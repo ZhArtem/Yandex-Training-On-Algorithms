@@ -41,11 +41,18 @@
 # кондиционер самостоятельно выключается и температура в комнате не поменяется.
 
 
-
-def get_t_after_hour(mode, in, out):
-
+def get_t_after_hour(mode, a, b):
+    if mode == 'freeze':
+        return a if a <= b else b
+    elif mode == 'heat':
+        return a if a > b else b
+    elif mode == 'auto':
+        return b
+    elif mode == 'fan':
+        return a
 
 
 troom, tcond = map(int, input().split())
 mode = input()
 t = get_t_after_hour(mode, troom, tcond)
+print(t)

@@ -93,5 +93,27 @@
 # 0
 # bye
 
-
-
+s = input()
+queue = []
+while s != 'exit':
+    if 'push' in s:
+        queue.append(s.split()[-1])
+        print('ok')
+    elif 'pop' in s:
+        if queue:
+            print(queue[0])
+            del queue[0]
+        else:
+            print('error')
+    elif 'front' in s:
+        if queue:
+            print(queue[0])
+        else:
+            print('error')
+    elif 'size' in s:
+        print(len(queue))
+    elif 'clear' in s:
+        queue = []
+        print('ok')
+    s = input()
+print('bye')
