@@ -44,12 +44,27 @@ https://contest.yandex.ru/contest/45468/problems/3/
 """
 
 
+def bin_search(seq, x):
+    if x > seq[-1]:
+        return len(seq)
+    left = 0
+    right = len(seq) - 1
+    while left < right:
+        middle = (left + right) // 2
+        if x <= seq[middle]:
+            right = middle
+        else:
+            left = middle + 1
+    return left
+
+
 n = int(input())
-s = set(map(int, input().split()))
+s = sorted(set(map(int, input().split())))
 k = int(input())
-p = tuple(map(int, input().split()))
-res = []
-for pi in p:
-    res.append(len(tuple(filter(lambda x: x < pi, s))))
+p = map(int, input().split())
+res = [bin_search(s, i) for i in p]
 print(*res, sep='\n')
+
+
+
 
