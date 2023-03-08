@@ -49,13 +49,23 @@ https://contest.yandex.ru/contest/45468/problems/4/
 #     print(v_row, v_col)
 
 
-n, k, row, column = int(input()), int(input()), int(input()), int(input())
-pos1 = (row - 1) * 2 + column + k
-pos2 = pos1 - 2 * k
+n, k, row, column = [int(input()) for _ in range(4)]
+pos2 = (row - 1) * 2 + column + k
+pos1 = pos2 - 2 * k
+print("pos1", pos1)
+print("pos2", pos2)
+r1, c1 = (pos1 + 1) // 2, 2 - pos1 % 2
+r2, c2 = (pos2 + 1) // 2, 2 - pos2 % 2
 
-if pos1 <= n:
-    print((pos1 + 1) // 2, 2 - pos1 % 2)
-elif pos2 > 0:
-    print((pos2 + 1) // 2, 2 - pos2 % 2)
+if 0 < pos1 <= n:
+    if r2 - row <= row - r1:
+        print(r2, c2)
+        print(11)
+    else:
+        print(r1, c1)
+        print(12)
+elif 0 < pos2 <= n:
+    print(r2, c2)
+    print(22)
 else:
     print(-1)

@@ -45,9 +45,31 @@ https://contest.yandex.ru/contest/45468/problems/29/
 5
 """
 
+# ----
+
+def min_cost_of_lunches(a, n, m):
+    dp = [[float('inf')] * (m + 2) for _ in range(n + 1)]
+    dp[0][0] = 0
+
+    for r in dp:
+        print(*r)
+    print()
+
+    for i in range(1, n + 1):
+        for j in range(0, m + 1):
+            if a[i] > 100 :
+                dp[i][j] = min(dp[i - 1][j + 1], dp[i - 1][j - 1] + a[i])
+            else:
+                dp[i][j] = min(dp[i - 1][j + 1], dp[i - 1][j] + a[i])
+
+    for r in dp:
+        print(*r)
+    print()
+
+    return dp[n][m]
 
 n = int(input())
-costs = []
+costs = [0]
 max_count_coupon = 0
 for _ in range(n):
     cost = int(input())
@@ -55,3 +77,7 @@ for _ in range(n):
     if cost > 100:
         max_count_coupon += 1
 
+print(*costs)
+
+ans = min_cost_of_lunches(costs, n, max_count_coupon)
+print(ans)
