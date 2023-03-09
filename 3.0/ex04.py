@@ -32,40 +32,16 @@ https://contest.yandex.ru/contest/45468/problems/4/
 """
 
 
-# n, k, p_row, p_col = [int(input()) for _ in range(4)]
-# p_place = (p_row - 1) * 2 + p_col
-# if p_place + k <= n:
-#     v_place = p_place + k
-#
-# elif p_place - k > 0:
-#     v_place = p_place - k
-# else:
-#     v_place = -1
-# if v_place == -1:
-#     print(v_place)
-# else:
-#     v_row = (v_place + 1) // 2
-#     v_col = 2 - v_place % 2
-#     print(v_row, v_col)
-
-
 n, k, row, column = [int(input()) for _ in range(4)]
 pos2 = (row - 1) * 2 + column + k
 pos1 = pos2 - 2 * k
-print("pos1", pos1)
-print("pos2", pos2)
+
 r1, c1 = (pos1 + 1) // 2, 2 - pos1 % 2
 r2, c2 = (pos2 + 1) // 2, 2 - pos2 % 2
 
-if 0 < pos1 <= n:
-    if r2 - row <= row - r1:
-        print(r2, c2)
-        print(11)
-    else:
-        print(r1, c1)
-        print(12)
-elif 0 < pos2 <= n:
+if pos2 <= n and r2 - row <= row - r1:
     print(r2, c2)
-    print(22)
+elif 0 < pos1 <= n:
+    print(r1, c1)
 else:
     print(-1)
